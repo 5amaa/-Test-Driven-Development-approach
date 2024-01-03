@@ -6,6 +6,14 @@ namespace DeskBooker.Core.Processor
     
     public class DeskBookingRequestProcessorTests
     {
+        private readonly DeskBookingRequestProcessor _processor;
+
+        public DeskBookingRequestProcessorTests()
+        {
+            //Arrange
+           _processor = new DeskBookingRequestProcessor();
+
+        }
         [Fact]
         public void ShouldReturnDeskBookingRequestWithRequestValues()
         {
@@ -21,12 +29,12 @@ namespace DeskBooker.Core.Processor
             };
 
             //1.1- Instance from class DeskBookingRequestProcessor that have BookDesk Method 
-            var Processor = new DeskBookingRequestProcessor();
+         // var Processor = new DeskBookingRequestProcessor();
 
             //2- Act
 
             //2.1- Instance from class for the Expicted Result
-            DeskBookingResult result = Processor.BookDesk(request);
+            DeskBookingResult result = _processor.BookDesk(request);
 
             //3- Assert
 
@@ -38,7 +46,17 @@ namespace DeskBooker.Core.Processor
 
         }
 
+        [Fact]
+        public void ShouldThrowExceptionIfRequestIsNull()
+        {
+         
 
-        
+            //Act
+            var exception = Assert.Throws<ArgumentNullException>(()=> _processor.BookDesk(null));
+
+            //Assert
+            Assert.Equal("request", exception.ParamName);
+
+        }
     }
 }
