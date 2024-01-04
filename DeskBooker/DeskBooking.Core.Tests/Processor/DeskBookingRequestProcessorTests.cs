@@ -86,6 +86,7 @@ namespace DeskBooker.Core.Processor
             DeskBooking savedDeskBooking = null;
 
             //awl lma call el deskBookingRepositoryMock excute the save method 
+            //when call the Deskbook the save method call automatic 
             _deskBookingRepositoryMock.Setup(x => x.save(It.IsAny<DeskBooking>()))
                 .Callback<DeskBooking>(deskBooking => { savedDeskBooking = deskBooking; });
 
